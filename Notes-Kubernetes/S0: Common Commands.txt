@@ -1,0 +1,116 @@
+Commands Review
+
+Minikube
++++++++++
+minikube start: Starts a local Kubernetes cluster
+
+minikube status: Gets the status of a local Kubernetes cluster
+
+minikube unpause: Unpause Kubernetes
+
+minikube delete --all: Set flag to delete all profiles
+
+minikube service <deployment-name> --url: Gives you a URL that's actually reachable from your host. 
+
+---------------
+
+Kubectl
++++++++++
+
+Kube Command Line
+
+kubectl create -f <replicaset-definition.yaml>: Used to create a replica set or any object in Kubernetes dpending on the file we are providing as input. 
+                -f allows us to pass a file. 
+
+kubectl get all: see a list of all objects created. 
+
+kubectl apply -f .: deploys the entire folder you are in. Must be in the working directory of the folder. 
+
+kubectl delete 0f .: removes all pods/services based on the working directory.
+
+kubectl scale deployment <vote> --replicas-<5>: scales a pod to the desired amount (5 in this case)
+
+Pods
++++++++++
+
+kubectl get pods: see list of pods created
+
+kubectl get pods -o wide: lists all pods with additional columns beyond the default output. 
+
+Replica Set
++++++++++
+
+kubectl get replicaset: see list of replica sets created
+
+kubectl delete replicaset <myapp-replicaset>: deltes replica set (Also deletes underlying Pods)
+
+kubectl describe replicaset <myapp-replicaset>: Shows more detailed information about the replicaset.
+
+kubectl replace -f <replaceset-defintion.yaml>: Replaces or updates replica set. 
+
+kubectl scale --replicas=6 -f <replicaset-definition.yaml>: Scales replica set from the command line without having to modify the file. 
+
+kubectl edit replicaset
+kubectl apply -f </root/replicaset-definition-1.yaml>
+
+Deployment
++++++++++
+
+kubectl get deployments - see list of deployments
+
+Services
++++++++++
+
+kubectl get service | kubectl get svc: list created Services
+
+Updating Images
++++++++++
+
+kubctl set image deployment/<deployment-name> <container-name>=<new-image>:<tag>
+kubectl set timage deployment/<myapp-deployment myapp-container>=<myapp:v2>
+    - This updates the myapp-container container in the myapp-deployment. Deployment to use the myapp:v2 image, and triggers a rolling update automatically. 
+
+
+Vim Editor Commands
++++++++++
+
+1. Open the file: vim <filename.txt>
+
+2. Enter insert mode to edit:
+    - Press i to insert at the cursor
+    - Alternatively:
+        a: append after the cursor
+        o: open a new line below
+
+3. Make your changes
+
+4. Exit Insert Mode:
+    - Press Esc
+
+5. Save the file:
+    :w - Saves the file
+    Press Enter
+
+6. Quit Vim:
+    :q
+    Press Enter
+
+Vim Common Shortcuts
++++++++++
+
+:w - Save only
+:wq - Save and Quit
+zz (press Shift+Z twice while in Normal Mode)
+:q!: Quit without saving
+
+If the file is read-only, you may need to sabe with elevated permission:
+
+vim
+:w !sudo tee%
+
+or open with: sudo vim <filename.txt>
+
+If you're new to Vim, the key things to remember is:
+    i: Edit text
+    Esc: Stop editing
+    :wq: Save and quit
