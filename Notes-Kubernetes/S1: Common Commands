@@ -1,0 +1,31 @@
+# Overview
+
+## Minikube
+
+`minikube start`: Starts a local Kubernetes cluster
+
+`minikube status`: Gets the status of a local Kubernetes cluster
+
+`minikube unpause`: Unpause Kubernetes
+
+`minikube delete --all`: Set flag to delete all profiles
+
+`minikube service <deployment-name> --url`: Gives you a URL that's actually reachable from your host.
+
+## Kubectl
+
+`kubectl create -f <replicaset-definition.yaml>`: Used to create a replica set or any object in Kubernetes depending on the file we are providing as input.
+
+- `-f` allows us to pass a file.
+
+`kubectl get all` - see list of all objects created.
+
+`kubectl apply -f .` - deploys an entire folder you are in. Must be in the working directory of the folder.
+
+`kubectl delete -f .` - Removes all pods/services based on the working directory.
+
+`cat <path/filename.txt>` - view files (Helps viewing definition files)
+
+`kubectl scale deployment <deployment-app> --replicas=<num>` - Scales a pod to the desired amount.
+
+## Pods
