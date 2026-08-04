@@ -105,5 +105,7 @@ git branch -m
     - Move/rename a branch and the corresponding reflog. 
         - You have to be in the branch to move/rename the branch. 
 
++++++++++
 HEAD
++++++++++
 Head is simply a pointer that refers to the current "location" in your respository. It points to a particular branch reference. 
