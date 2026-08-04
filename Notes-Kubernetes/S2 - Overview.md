@@ -149,3 +149,191 @@ Acts as the front end of Kubernetes. The user's management devices, command line
 ETCD is a distributed, reliable key value store used by Kubernetes to store all data used to manage the cluster. 
 - ETCD is respoinsible for implementing locks within the cluster to ensure that there are no conflicts between masters. 
 
+#### Scheduler
+Responsible for distributing work or containers across multiple nodes. It looks for newly created containers and assigns them nodes. 
+
+#### Controller
+Brain behind the ochestration. They're responsible for noticing and responding when nodes, containers or endpoints go down. 
+- Controllers make decisions to bring up new containers
+
+#### Container Runtime 
+Is the underlying software that is used to run containers. 
+- We use DOcker but there are other options. 
+
+#### Kubelet
+Is the agent that runs on each node in the cluster. The agent is responsible for making sure that the containers are running on the nodes as expected. 
+
+Two Types of Servers
+- Master
+- Worker
+
+The **worker node** or **minion** (formerly known), is where the containers are hosted like *Docker Containers*
+
+**Master Server is the Node with the Kube API server on it**
+
+**The worker nodes have the Kubelet Agent** that is repsonsible for interacting with the master to provide information of the work node and carry out actions requested by the master on the worker nodes. 
+- Master Server - Kube API (Kube-apiserver)
+- Worker Server - Kubelet Agent
+
+All the information gathered is stored in a key value store on the master. 
+- The key value store is based on the popular ETCD framework. 
+- Master also has the control manager and the scheduler. 
+
+![Master vs Worker Nodes](./imgs/Example_Master_vs_Worker.png)
+
+### Kubectl 
+
+Known as 
+- Kube Command Line Tool
+- Cube CTL
+- Cube Control
+
+It is used to deploy and manage applications on a Kubernetes cluster to get cluster information, to get the status of other nodes in the cluster, and to manage other tasks. 
+
+`kubectl run` - deploys an application on the cluster.
+
+`kubectl cluster-info` - view information about the cluster.
+
+`kubectl get nodes` - lists all nodes within a cluster.
+
+## Docker vs ContainerD
+
+Docker was the primary container for Kubernetes
+- When Kubernetes grew in popularity other container runtimes like rocket (rkt) wanted in.
+- Kubernetes introduced an interface called Container Runtime Interface or CRI.
+
+### Container Runtime Interface (CRI)
+
+Allowed any vendor to work as a container runtime for Kubernetes as long as they adhere to the OCI standards. 
+> Open Container Initiative
+>> Runtime Spec | How an image should be built
+>> Runtime Spec | Standards on how many container runtimes should be developed
+
+With ContainerD the command line Ktor is very limited and not user friendly. 
+- You have to rely on API calls directly, which isn't user friendly. 
+
+The Container Runtime Interface or CRI is a single interface used to connect CRI with compatible container runtimes. 
+- The CRI Control is a command line utility that is used to interact with the CRI compatible container runtime. 
+	- Developed and maintained by the Kubernetes community.
+	- Also works across all the different container runtimes. 
+		- Used for debugging mostly. 
+
+### Docker Deprecation
+Docker consisted of multiple tools put together like Docker CLI, the API, the build tools that help build images. 
+There was support for volumes, auth, security and finally also the container runtime called *Runc* and the daemon that managed the runtime called *the container*
+
+ContrainerD is CRI component that can work directly with Kubernetes. 
+
+Docker is still the most popular container solution out there and used by most. 
+> Kubernetes just no longer *requires* Docker as the runtime now. 
+
+## Review
+
+### Image, Node, Pod, Cluster, Container
+
+Shipping Example
+- Image: Blueprint
+- Container: Shipping container built from the blueprint.
+- Pod: One or more containers that travel together.
+- Node: The truck carrying the containers.
+- Cluster: A fleet of trucks working together.
+
+#### Image
+An Image is a read-only template that containers everything needed to run an application.
+
+Think of it as the recipe:
+- Operating System Libraries
+- Application Code
+- Dependencies
+- Configuration Defaults
+	- nginx
+	- postgres
+	- ubuntu
+	- minecraft-server
+
+#### Container
+A containter is a running instance of an image. 
+
+```
+Image
+  nginx:latest
+	↓
+	↓
+Container
+  My Web Server
+```
+
+If you start the same image three times:
+
+```
+nginx image
+├── Container A
+├── Container B
+└── Container C
+```
+Each container is independent
+- With docker you might run `docker run nginx`
+
+### Pod Kubernetes
+A Pod is the smallest deployable unit in Kubernetes
+A Pod usually containers 
+
+```
+Pod
+
+├── Nginx Container
+└── Logging Container
+```
+
+The containers inside a pod:
+- Share the same IP address
+- Share storage (if configured)
+- Are started and stopped together
+
+Most pods contain one container, but multiple containers are useful when they need to work closely together. 
+
+#### Node 
+A Node is a physical or virtual machine that runs pods. <br>
+It could be:
+- A NAS
+- A Raspberry Pi
+- A Cloud VM
+- A Dell Server
+
+```
+Node (NAS)
+
+CPU
+RAM
+Storage
+
+├── Pod 1
+├── Pod 2
+├── Pod 3
+└── Pod 4
+```
+
+Your NAS would be a single Kubernetes Node
+
+#### Cluster
+A Cluster is a collection of nodes managed together. 
+```
+Cluster
+
+├── Node 1 (NAS)
+├── Node 2 (Mini PC)
+├── Node 3 (Raspberry Pi)
+└── Node 4 (Cloud VM)
+```
+
+Kubernetes decides where to run your pods. <br>
+If Node 1 fails:
+```
+Before
+
+Node 1 (NAS)
+ └── Minecraft
+After failure:
+Node 2 (Mini PC)
+ └── Minecraft
+```
