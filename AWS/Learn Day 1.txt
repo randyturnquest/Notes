@@ -1,0 +1,120 @@
+A Lambda function needs temporary storage to store files while executing
+    - Store the files in the tmp/directory
+
+A Developer needs to increase the CPU availability to a Lambda function to process data more efficiently
+    - Increase the allocated memory of the function
+
+How can you invalidate an API Gateway Cache?
+    - Send a request with a Cache-Control:max-age header
+    - Enable the Require Authorization option on your API Cache
+
+A developer needs to deploy different API versions in API Gateway
+    - Use stage variables
+
+Choosing the best partition key for the DynamoDB Table
+    - Use the partition key with the highest cardinality (eg. student ID)
+
+An application uses a DynamoDB database with Global Secondary Index. DynamoDB request are returning a 'ProvisionedThroughputExceedException' error. Why is this happening?
+    - The write capacity of the GSI is less than the base table. 
+    - Global Secondary Index is a data structure that contains an alternate partition key and sort key, letting you query data across an entire table using non-primary key attributes
+
+What section must be added to a CloudFormation template to resources defined by AWS SAM?
+    - Transform
+
+It is required that incoming traffic is shifted in two increments. 10% of the traffic must be shifted in the first increment, and the remaining 90% should be deployed after some minutes.
+    - Canary Deployment
+
+A company has two accounts, The developers from Account A need to access resourcces on Account B
+    - Use cross-account access role
+
+Multiple developers need to make incremental code updates to a single project and then deploy the new changes
+    - Use GitHub/GitLab/Bitbucket as the code repository and directly deploy the new package using AWS CodeDeploy
+
+A development team is using CodePipeline to automate their deployment proceess. The code changes must be reviewed by a person before releasing to production
+    - Add a manual approval action stage
+
+How can a Developer verify permission to call a CLI command without actually making a request?
+    - Use the --dry-run parameter along with the CLI command
+
+A Developer has to ensure that no applications can fetch a message from an SQS queue that's being processed or has already been processed. 
+    - Increase the VisibilityTimeout value using the ChangeMessageVisibility API and delete the message using the DeleteMessage API
+
+IAM identities handle the authentication aspect of your AWS account. It pertains to... any user, application or group that belongs to your organization
+
+Credentials like an access key is used for... interacting with AWS Services via CLI/API commands.
+
+Credentials like a secret key (for programming access) is used for... interacting with AWS Services via CLI API commands. 
+
+Unlike IAM users, roles use... time-limited security credentials for accessing AWS. 
+    - When creating a role, you choose a trusted entity. The trsuted entity determines who is authorized to assume the IAM role. 
+
+Examples of identity providers are
+    - Microsoft Active directory
+    - Facebook
+    - Google
+    - Amazon
+    - IdP that is comptaible with OpenID Connect (OIDC) and SAML 2.0
+
+Types of IAM Policies
+    - AWS Managed
+    - Customer Managed
+    - Inline   
+
+Policy Wide Information: A version element perrtaining to the AWS policy language being used. Has a static value of 2012-10-17, referring to the release data of the current AWS policy access language
+
+Statement block of an IAM Policy is where you add the permissions you need for accessing various AWS services. 
+
+IAM Policy Statement
+- Sid, Effect, Action, Resource, Condition
+
+Policy Statement Sid - label that you give to a statement. Helpful for quickly identifying what a statement is for rather than reviewing what's in the Action, Effect or Resource
+
+Policy Conditions: NotIpAddress: All IP affresses except the specified IP address or range
+
+Resource Based Policy - Principal Element specifies which IAM identities are allowed to access the resource
+
+Rsource Element specifies which resource users are allowed to perform actions on.
+    - A bucket policy is a type of resource-based policy that is attach to an Amazon S3 bucket. The policy specifies the actiosn that are allowed to perform those actions.
+
+Cross-Account Access refers to access between two or more separate AWS accounts
+
+Principal Element specifies which IAM identies are allowed to access the resource
+
+Resource Element specifies which resources users are allowed to perform actions on
+
+AWS Security Token Service is a global web service that allows you to generate temporary access for IAM users for federated users to gain access to your AWS resources. 
+    - These temporary crednetials are session-based, meaning they're for short term use only; once expired they can no longer be used to access your AWS resources. 
+
+Assume Role API - Once a request is successful, AWS generates and returns temporary credentials consisiting of an access key ID, a secret access key, and a security token. These crednetials can be usedd by the IAM user to make requests to AWS services. 
+
+STS AssumeRoleWithWebIdentity does not require IAM Identity credentials, making it suitable for mobile applications that require access to AWS. It is recommended that you use Amazon Cognito when providing AWS access to application users. However, you may just use AssumeRoleWithWebIdentity as a standalone operation.   
+
+STS API Operations - GetFederationToken operation that returns a set of temporary security credentials consisting of a security token access key, secret key, and expiration for a federated user. 
+
+GetFederationToken is usually used for federating access to users authenticated by a custom identity broker and can only be called using programmatic crednetials of an IAM user. IAM Roles are not supported.
+
+Although you can use the security crednetials of a root user to call GetFederationToken it is not recommend for security reasons
+    - Instead AWS advises creating an IAM user specifically for a proxy application that does the authentication process. 
+
+You can use the temporary GetFederationToken in any AWS service except the following
+    - IAM Operations
+    - STS Operations
+
+DecodeAuhorization message decodes additional information about the authorization status of a request from an encoded message returned in response to an AWS request. 
+    - To decode an authorization status message, one must be granted permission via an IAM policy to request the DecodeAuthorizzationMessage action. 
+
+You can allot the max memory available for a Lambda function as well as the function's execution duration, before timing out. The memory, which scales proportionally to the CPU power, can range from 128MB to 10,240MB in 1MB increments.
+    - The deault timeout is 3 seconds, max value 900 seconds (15 minutes).
+
+Lambda functions are commonly used as a backend for APIs that do no require
+    - constant load, such as handling login requests or on-the-fly image processing. 
+
+Services that invoke Lambda functions synchronously
+    - API Gateway
+    - Load Balancer
+    - Cognito
+    - Data Firehose
+    - CloudFront
+
+DynamoDDB 4 Stream Types 
+The Stream View Type d

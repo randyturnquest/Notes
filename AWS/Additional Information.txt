@@ -1,0 +1,26 @@
+504 Error - Gateway timeout
+==========
+One server on the internet received no timely reply from another server while trying to load a page.
+    - It's usually a server-side problem where the host, database or proxy/CDN is overloaded or slow. 
+
+
+
+AWS Lambda Function
+==========
+Explanation One
+=====
+
+addTwo = (x,y) => x + y
+
+Normally when you have a full server, an EC2 instance to run a function above. You pay AWS to run the EC2 server whether or not the function is being called. 
+    - With Lambda you can create this function and call it without needing a full server. 
+    - You only pay AWS when that function is called. 
+
+Another Example. A function that resizes images. Instead of having a dedicated server running 24/7 waiting for uploads, you can create a lambda function that runs only when an image is uploaded. 
+
+Explanation Two
+=====
+
+Even in the cloud, you rent a named dedicated server with a hostname to deploy your ode on. You're in charge of managing this server and its uptime; you just don't have to assemble it by hand. 
+Lambda replaces that model by providing you with a fleet of completely anonymous servers whose specs and names you don't know and don't care about. The advantage is that you don't have to manage or even inteeract with the fleet in any way - you just upload your code to this fleet, and let the fleet handle all traffic. 
+
