@@ -1,0 +1,111 @@
+Git Branch
+
+Every commit has a unique hash
+    - A unique identifier that responds to the commit. 
+Every commit references at least one parent commit that came before it. 
+
+Git Branch Contexts
+On large projects, we often work in multiple contexts;
+    1. You're working on 2 different color scheme variations for your website at the same time, unsure of which you like more. 
+    2. You're also trying to fix a horrible bug, but it's proving tough to solve. You need to really hunt around and toggle some code on and off to figure it out. 
+    3. A teammate is also working on adding a new chat widget to present at the next meeting. It's unclear if your company will end up using it. 
+    4. Another coworker is updating the search autocomplete. 
+    5. Another developer is doing an experimental radical design overhaul of the entire layout to present next month. 
+
+Branches are an essential part of Git. 
+    - Think of branches as alternative timelines for a project. 
+They enable us to create separate contexts where we can try new things, or even work on multiple ideas in parallel. 
+
+If we make changes on one branch, they do not impact the other branches (unless we merge the changes).
+
+In git, we are always working on a branch.
+
+Many people designate the main branch as their "source of truth" or the "official branch" for their codebase, but that is left to you to decide. 
+    - The default branch is main
+        - IT does not have to hold the "main copy" of your project. 
+Github renamed the default branch from master to main. 
+
+commit bca5fc8n05deda4a13e7588c7ca352e45760c1dd
+(HEAD -> main)
+HEAD is simply a pointer that refers to the current "location" in your repository. 
+    - It points to a particular branch reference. 
+So far, HEAD always points to the latest commit you made on the current working branch. 
+
++++++++++
+Viewing Branches
++++++++++
+
+git branch - views your existing branches. The default branch in every git repo is main, though you can configure this.
+    - The * indicates which branch you're on. 
+
++++++++++
+Creating Branches
++++++++++
+
+git branch <branch-name>: makes a branch based upon the current HEAD.
+    - This just creates the branch. It does not switch you to that branch (the HEAD stays the same)
+    - Note. Branch names should not include spaces.
+
++++++++++
+Switching to Created Branch
++++++++++
+
+git switch <branch-name>
+    - Once you have created a new branch use git switch <branch-name> to switch to it. 
+    - git switch main
+    - // Switch to branch 'main'
+
+git switch -c: Creates a new branch AND switches to it in one go. 
+
+Note: Remember -c as a short for "create"
+
+
++++++++++
+Creating Branches and Switching in One Go
++++++++++
+
+git checkout -b <branchname>
+git switch -c <branchname>
+
+Historically, we used git checkout <branch-name> to switch branches. This still works. 
+
+The checkout command does additional things, so the decision was made to add a standalone simpler switch command.
+    - Older tutorials and docs may still show the switch command. Both now work. 
+
+Note. 
+If you create a new file that you haven't add/stage/commit to a working branch, if you switch branches that file(s)/folder(s) will follow you to other branches until it is added to a branch. 
+    - Stash or Commit, to avoid conflict
+
+If it involves a file that is used in another branch
+    - Git will warn you that the file is in conflict and to either commit or stash that file. 
+        - Carrying the file over would create conflicts.
+        - A new file/folder would not create conflict as no other area in the repository that's why it follows. 
+
++++++++++
+Deleting a Branch
++++++++++
+
+git branch -d 
+git branch -delete
+    - Delete a branch. The branch must be fully merged in its upstream branch, or in HEAD if no upstream was set with --track or --set-upstream-to.
+
+-D 
+Shortcut for --delete --force.
+
+git branch -D <WebInfoSection>
+    - Allows deleting the branch irrespective of its merged status. 
+        - You cannot be in the current branch when trying to delete the branch.
+
++++++++++
+Renaming a Branch
++++++++++
+
+git branch -m
+-m --move
+    - Move/rename a branch and the corresponding reflog. 
+        - You have to be in the branch to move/rename the branch. 
+
++++++++++
+HEAD
++++++++++
+Head is simply a pointer that refers to the current "location" in your respository. It points to a particular branch reference. 
