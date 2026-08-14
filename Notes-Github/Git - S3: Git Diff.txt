@@ -1,4 +1,0 @@
-Git Diff
-+++++++++
-
-We can use the git diff command to view changes between commits, branches, files, our working directory, and more. We often use git diff along 
