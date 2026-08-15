@@ -2,4 +2,9 @@ DynamoDB Use Cases: Aggregation of data for auditing
     - Transactions Table -> DynamoDB Streams -> Lambda Functions -> TotalTransactions Table
     - The Transactions table is the source table. When new transactions are inserted into it, new records will fill the DynamoDB streams. The Lambda function reads the recordds from the stream and increments the total and total_tx attributes of TotalTranactiosn table
 
-Dy
+DynamoDB: 4 Steam Types:
+    - The Stream View Type determines what kind of data you want to capture.
+        - KEYS_ONLY
+        - NEW_IMAGE
+        - OLD_IMAGES
+        - NEW_AND_OLD_IMAGES
