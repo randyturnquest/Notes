@@ -1,0 +1,124 @@
+DynamoDB Streams - If you need a more complex streaming application
+    - Configure DynamoDB to send records to a Kinesis Data stream. Doing so will give you access to more advanced features
+
+    - Longer Data Retention +24 Hours
+    - Functions for Processing Large Amounts of Data
+    - Integrations with other Kinesis Services (Amazon Data Firehouse)
+
+DynamoDB Accelerator (DAX)
+    - Highly available, im-memory cache that is purposely built for DynamoDB
+    - With DAX in place, you could reach response times in microseconds for millions of requests per second. 
+
+A DAX Cluster is housed within a VPC, meaning it is not publicly accessible by default unless you configure it. 
+
+Use DAX if:
+    - 1. You have a read-intensive application that requires response time in the microsecond range
+    - You have large set of data that you are frequently reading. 
+    - Your application can eventually tolerate consistent reads. 
+
+Don't Use DAX:
+    - Your application requires strongly consistent reads.
+    - Your application performs more writes than reads. 
+
+DynamoDB Transactions: ACID Stands for:
+    - Atomicity
+    - Consistency
+    - Isolation
+    - Durability
+
+    - Four database properties that guarantee data integrity and validity even in the event of a power outage or system failure. 
+
+DynamoDB Transactions are
+    - A collection of queries that effectively act as a single unit of work
+
+With DynamoDB Transactions, you can wrap individual operations into a single function. This function equates to 1 transaction. 
+    - If one operation fails, the transaction as a whole also fails. 
+    - Check Account for x Dollars -> Subtract x Dollars -> Transfer x Dolalrs
+
+Transactions are 2 times more expensive than regular reads or writes because DynamoDB needs to perform two underlying reads/writes of every item. 
+    - one to prepare the transaction
+    - one to commit the transaction
+
+Using Time to Live (TTL)
+    - Enable TTL via the DynamoDB Console or suing the UpdateTimeToLive API
+    - Assign the name of the TTL attribute that DynamoDB will look for  in detemrining if an item is eligible for expiration
+
+DynamoDB uses DynamoDB Steams to manage the synchronization of tables. 
+
+Before you can use DynamoDB GLobal Tables, you have to enable DynamoDB Streams with 
+    - NEW_AND_OLD_IMAGES StreamViewType
+
+Why use Global Tables?
+    - To protect against regional failures (You still have to implement the failover logic in your application)
+    - To improve the performance of latency-sensitive applications (bringing data closer to your users)
+
+AWS CloudFormation
+    - Allows you to model your entire cloud environment in a CloudFormation template using either JSON or YAML.
+    - To create an environment, simply upload your CloudFormation template to Amazon S3
+    - Cloud Formation will take the template from S3 and create the resources specified in it. 
+
+DynamoDB uses DynamoDB Streams to manage the synchronization of tables. 
+
+The individual resources the CloudFormation creates are treated as a single units called Stacks
+
+Parts of CloudFormation template
+    - AWSTemplateFormatVersion
+    - Description
+    - Metadata
+    - Resources
+    - Mappings
+    - Parameters
+    - Conditions
+    - Transform
+
+CloudFormation Template - AWSTemplateFormatVersion
+    - Lets you set the version of the template that you want to use, which determines the capabilities of the template. 
+    - If you don't assign a version, CloudFormation automatically assumes that you want to use the latest version. 
+
+CloudFormation Template - Description
+    - Allows you to include comments about your template to help you better describe and add more details about your template. 
+
+CloudFormation Template - Metadata
+    - Allows you to provide objects that provide details about the template or even implementation details of specific resources. 
+
+CloudFormation Template - Resources (Required)
+    - Where you define all resources that you want to include in your stack. 
+    - AWS resources such as EC2 instance, Lambda function, S3 buckets are declared in the Resources action
+    - Resources is the only REQUIRED section of CloudFormation template. All other sections are optional.
+
+CloudFormation - Mappings
+    - Matches a key to a corresponding set of values. 
+
+CloudFormation - Parameters
+    - Enables users to pass values dynamically based on their use case. 
+    - When writing CloudFormation templates, it's very unlikely to be hardcoding values such as AMI ID, security group ID, etc. 
+
+CloudFormation Template - Conditions
+    - Defines condiiton by using the instrinsic condition functions. These conditions determine when AWS CloudFormation creates the associated resources. 
+
+CloudFormation Template - Transform
+    - A section to write templates in the AWS Serverless Application Model (AWS SAM) syntax. 
+    - The syntax used in SAM is different from the standard CloudFormation template. CloudFormation converts the 'transforms' the templates written under the Transform section into a regular CloudFormation template.
+
+!Ref - returns the value of the parameter or resouce. 
+
+Dynamic References - Allows you to reference external alues in your stack template
+
+CloudFormation supports the following reference key names
+    - ssm (SSM Parameter Store plaintext parameter)
+    - ssm-secure (SSM Parameter Store secure string parameter)
+    - secretsmanager (Secrets Manager secret)
+
+Dynamic References - Allows you to reference external values in your stack template
+
+SAM custom resources enable you to construct serverless applications in fewer lines of code
+
+SAM CLI Command - SAM Deploy
+    - Bundles your application code into a deployment package and deploy it as a SAM application
+
+SAM CLI Command - sam local invoke
+    - allows you to test Lambda functions and SAM-based serverless applications locally in a Lmabda-like execution environment
+
+In Step Functions, we refer to the workflow as State Machine(s), and each step in a State Machine is called a state. 
+
+Task, Choice, Parallel, Wait, Fail, Succeed, Pass State
