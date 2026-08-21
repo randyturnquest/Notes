@@ -1,0 +1,5 @@
+Amazon ElastiCache for Redis: It does not totally support multithreaded architecture, unlike Memcached
+
+Amazon CloudFront - primarily used as a Content Delivery Network (CDN) service that delivers your entire website, including dynamic, static, streaming and interactive content, using a global network of edge locations. 
+
+AWS IoT Greengrass - Service primarily used to enable connected devices to run AWS Lambda functions, execute preditions based on machine learning models, keep device data in sync, and communicate with other devices securely without an Internet connection. 

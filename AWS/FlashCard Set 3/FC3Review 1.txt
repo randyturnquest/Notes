@@ -1,0 +1,173 @@
+How is authentication handled with Cognito User Pools? 
+    - The Cognito User Pool token is sent back to the user. 
+    - The Cognito User Pool verifies the identity of the user or sends the request to identity Providoers such as Facebook or Google
+    - Users send authentication request to Cognito User Pools
+    - The person can then use this token to access backend APIs hosted on EC2 clusters or in API Gateway and Lambda
+
+What are the features of Cognito User Pools?
+    - Account takeover Protection
+    - Built-in user interface for sign-in/up, customizable
+    - Enforcement of strong password requirements
+    - Phone and email verification
+    - Checking of compromised credentials
+    - Multifactor authentication
+
+What are the functions of Amazon Identity Pools?
+    - Used for user authorization
+    - Obtain temporary AWS credentials to access other AWS services
+    - Crate unique identities for users and federate them with identity providers
+
+How is authentication handled with Cognito User Pools?
+    - The Cognito user Pool taken is sent back to the user. 
+    - Users send authentication request to Cognito User Pools
+    - The Cognito User Pool verifies the identity of the user or sends the request to Identity Providers such as Facebook or Google
+    - The person can then use this token to access backend APIs hosted on EC2 clusters or in API Gateway and Lambda
+
+Cognito User Pools Features
+    - Account takeover protection
+    - Multi-factor authentication(MFA)
+    - Built-in user interface for sign-in/up, customizable
+    - Checking of compromised credentials
+    - Enforcement of strong password requirements
+    - Phone and email verification
+
+How Authentication is handled with Cognito User Pools
+    - Users send authentication requests to Cognito User Pools
+    - Cognito User Pool verifies the identity of the user of sends the request to identity provideos such as FB or Google
+    - The Cognito User Pool Token is sent back to the user 
+    - The person can then use this token to access your backend APIs hosted on your EC2 clusters or in API Gateway and Lambda
+
+Cognito User Pool Summary
+    - Provides AWS credentials for accessing resources on behalf of users
+    - Supports rules to map users to different IAM roles
+    - Free
+
+AWS Amplify
+    - One of the many development services in AWS that helps you build extensible, full-stack web and mobile apps faster. 
+    - Allows you to easily start your application development and automatically scale your resources with less management overhead. 
+
+AWS Amplify Studio
+    - A visual development environment that simplifies the development of your web and mobile apps. 
+    - You can easily build your frontend UI with its send of ready-to-use UI components, which can you directly connect to your app backend.
+
+You can import Figma prototypes built by your application desginers into the Amplify Studio for more seamless collaboration. 
+
+AWS CloudShell
+    - A powerful, management command-line interface (CLI) provided by Amazon Web Services. It enables users to manage AWS resources direcrly from their web browser without installing or confiuring the traditional AWS CLI locally. 
+
+AWS CloudShell provides convenient and immediate access point for AWS management tasks with the benefit of being pre-authenticated using your AWS console credentials
+
+CloudShell utilizes an Amazon Linux 2-based computer environment, providing a stable and compatible setting for your scripts and tools. 
+
+CloudShell is provided at no addtional cost; you only incur chargers for the AWS resources you manage through the shell, ensuring a cost-effective way to access AWS command line management. 
+    - CloudShell supports a variety of programming languages and AWS SDKs, enhacing its adaptability for diverse development and operational requirements. 
+
+AWS CodeBuild: Allows you to compile, build, run tests, and produce an artifact of your code. 
+- This can be integrated into your existing CI/CD process. 
+
+Amazon Elasic Container Registry (ECR): A managed Docker registry service in AWS. If you've used Docker Hub before then you'll have an idea of what ECR is. In Docker, to access images stored in a proivate registry. 
+
+To log in to your ECR respository directly you first need to issue the **aws ecr get-login-password** command. This returns an authentication token that you can use to authenticate against an Amazon ECR registry
+
+Logging into an ECR registry you can pass the authentication token on the password flag of the docker login command but for better security, you can optionally pass the password via the --password-stdin flag to provide the token through the Standard Input Stream 
+    - --password-stdin
+    - This prevents the token from ending up in the shell's history or log files. 
+
+Amazon EventBridge (formerly known as CloudWatch Events): A service used for building event-driven applications in AWS. EventBridge can capture events produced by your build environment. 
+
+AWS Systems Manager Parameter Store: Provides secure, hierarchical storage for configuration data management and secrets management. 
+
+AWS Systems Manager Parameter Store Simplified: A service that you can use for storing data such as passwords, database crednetials, environment variables, and any plaintext or encrypted data. 
+
+Why use Systems Manager Parameter Store with Codebuild?
+- CodeBuild has a limit of all environment variables that you can use. It will encounter an error if your env variables (key names and values) reach a combined maximum of 5,500 characters. 
+
+User Pool is only responsible for obtaining the JSON Web Tokens (JWT) supplied by these providers. 
+    - You can have validation logic in your application that verifies the JWT in exchange for access to your own resources. 
+
+How Authorization with Identity Pools is Handled?
+    1. The web app or mobile app sends its authentication token to Cognito Identity Pools. The token can come from a valid Identity Provider. 
+    2. CIP exchanges the user authentication token for temporary AWS credentials to access resources such as S3 or DynamoDB. 
+    3. AWS credentials are sent back to the user. 
+    4. The temporary AWS crednetials will be used to access AWS resources. 
+
+Cognito User Pool Summary:
+    - Handles the IdP interactions for you
+    - Provides profiles to manage users
+    - Provides OpenID Connect and OAuth Standard tokens
+    - Price per monthly active user
+
+Cognito Identity Pools Summary
+    - Provides AWS credentials for accessing resources on behalf of users. 
+    - Suuports rules to map users to different IAM roles
+    - Free
+
+You can enable unauthenticated Identities upon the creation of an Identity Pool or by modifying the setting of an existing Identity Pool. CIP with unauth access works by providing... a unique identifier and AWS credentials. (Think of Guest Users). 
+- You can control their permissions by defining the policy associated with your unauthenticated identities' role. 
+- To restrict guest users to viewing, set s3 read-only permissions in the role's policy. 
+- Guest users will be unable to delete update or upload to your application
+
+Amplify Hosting Under the Hood:
+Deploys your applications to Amazon CloudFront's content delivery network, which comes with hundreds of points of presence globally. 
+- Also allows you to set up your own custom domain for your application and add custom alarms that send notifications if a certain metric exceeds a threshold that you specify. 
+
+Amplify Command Line Interface: A CLI toolchain that you can use to configure and maintain your app backend straight from your local desktop. 
+
+Key Features of AWS CloudShell: Includes essential tools and programming languages such as Python, Node.js, Java and the AWS CLi all preinstalled and ready to use. 
+
+AWS CodeDeploy - Deployment Configurations: 
+- A set of rules and conditions that you can tweak to instruct CodeDeploy on how aggressive or conversative your deployment approach is going to be. 
+
+On the AWS Console, when you click on CodeDeploy > Deployment configurations, you will a list of... AWS-defined deployment strategies that you can use for your deployments. You can also create your own deployment configuratiosn if you want. 
+
+CodeDeployDefault.OneAtATime:
+- This is the slowest deployment. 
+- This will take time to deploy on all instances but the application will remain online since only once instance is offline at any given time.
+
+CodeDeployDefault.Linear10PercentEvery10Minutes:
+- Deployment for Lambda functions. This deployment will use Aliases on the backend to shift traffic from old version to the new version. 
+- 10% of traffic will be shited to the newer version every 10 minutes. Deployment will run at 10-minute intervals until 100% of the traffic is shifted to the newer version. 
+
+CodeDeploy manages each deployment stage as a collection of lifecycle event hooks through an... AppSpec file. 
+- Written in JSON or YAML
+
+Example for CodeDeploy's AppSpec file:
+- You may instruct CodeDeploy to install dependencies that your application requires before installing the new applicaiton version, or you can tell CodeDeploy to alter some file permissions before starting the deployment. 
+
+YAML is the only available format for configuring AppSpec in EC2/On-premise. 
+
+Lifecycle Event Hooks - Stages:
+    - Start
+    - ApplicationStop
+    - DownloadBundle
+    - BeforeInstall
+    - Install
+    - AfterInstall
+    - ApplicationStart
+    - ValidateService
+    - End
+
+Lifecycle Event Hooks - Start: 
+    - Initiates the instance for deployment
+
+Lifecycle Event hooks - ApplicationStop: 
+    - Used for running any scripts that will prepare your instance in receiving the new application version. 
+    - If you're deploying a new application, v2 you can include a script that will disable the pervious v1 version
+
+Lifecycle Event Hooks - Download Bundle:
+    - CodeDeploy will pull the new version "v2", from a source repository into the instance, as the name implies. 
+    - Triggered automatically following the ApplicationStop event. 
+
+Lifecycle Event Hooks - BeforeInstall:
+    - If you want to backup the configuration files of yout old application or any old logs and stop them elsewhere in your disk. So they are not overwriiten when the new application is copied. 
+
+Lifecycle Event Hooks - Install:
+    - CodeDeploy copies your new application files to the new destination that you specified. 
+
+Lifecycle Event Hooks - AfterInstall:
+    - Can be used to decode database string information, application credentials and perhaps other encrypted data that you've sent down as part of your application bundle and move everything to its proper destination. 
+
+Start, ApplicationStop, DownloadBundle, BeforeInstall, Install, AfterInstall, ApplicationStart
+
+Lifecycle Event Hooks - ApplicationStart:
+    - 

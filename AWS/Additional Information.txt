@@ -19,8 +19,86 @@ Normally when you have a full server, an EC2 instance to run a function above. Y
 Another Example. A function that resizes images. Instead of having a dedicated server running 24/7 waiting for uploads, you can create a lambda function that runs only when an image is uploaded. 
 
 Explanation Two
-=====
 
-Even in the cloud, you rent a named dedicated server with a hostname to deploy your ode on. You're in charge of managing this server and its uptime; you just don't have to assemble it by hand. 
-Lambda replaces that model by providing you with a fleet of completely anonymous servers whose specs and names you don't know and don't care about. The advantage is that you don't have to manage or even inteeract with the fleet in any way - you just upload your code to this fleet, and let the fleet handle all traffic. 
+- Even in the cloud, you rent a named dedicated server with a hostname to deploy your ode on. You're in charge of managing this server and its uptime; you just don't have to assemble it by hand. 
+- Lambda replaces that model by providing you with a fleet of completely anonymous servers whose specs and names you don't know and don't care about. The advantage is that you don't have to manage or even inteeract with the fleet in any way - you just upload your code to this fleet, and let the fleet handle all traffic. 
+
+Throughput
+
+    - The amount of material, data, or items that pass through a system or process during a specific period of time. 
+    - It measures how much work a system can handle from start to finish
+
+Figma Prototype
+
+    - An interactive, clickable version of a digital design. It turns static layout screens into a simulated app or website experienec. Users can click buttons, scroll pages, and test workflows without any actual programming or code. 
+
+    - Interactive Triggers: Link frames together using "on click" or "on hover" actions
+    - Transitions & Animations: Add smooth visual movements like slide-ins, dissolves, or smart animations. 
+    - Overlays & Modals: Pop up menus, dialog boxes, or dropdown lists over a background screen
+    - Device Frames: Preview designs wrapped in realistic mobile or desktop hardware frames. 
+
+    Why Use a Figma Prototype:
+
+    - User Testing: How real people navigate your product before developers write code
+    - Stakeholder Alignment: Give clients or teams a tangible feel for the final product vision. 
+    - Easy Sharing: Send a live web link to let others test the flow from any browser or mobile device.
+
+Why Use Systems Manager Parameter Store with CodeBuild?
+    - If you're passing a lot of config, it's surprisingly easy to hit that CodeBuild's 5,500 character limit.
+    - When you hit the limit, the build fails outright with a validation error befor eit even starts. 
+
+    Parameter Store 
+
+    Instead of embedding the actual values in the CodeBuild project defintion, you store the values in Systems Manager Parameter Store, and in your buildspec/project you only reference the parameter name (path), like
+
+    env:
+        parameter-store:
+            DB_PASSWORD: "/myapp/prod/db-password"
+            API_KEY: "/myapp/prod/api-key"
+    
+    CodeBuild resolves these at build time by calling Parameter Store and injecting the actual values into the build environment - but the defintion of the CodeBuild project only contains short parameter paths, not the full values. 
+
+AWS Key Management Service vs AWS Secrets Manager vs AWS Systems Manager Parameter Store
+
+- All three can be involved in "protecting secrets" but they solve different problems
+
+AWS Key Management Servcice (KMS)
+====
+- Primary Purpose: 
+    - Create and control cryptographic keys
+- Stores: 
+    - Encryption keys (CMKs/KMS Keys)
+- Best for: 
+    - Encrypting data and controlling who can use encryption keys
+
+AWS Secrets Manager
+====
+- Primary Purpose:
+    - Store and manage secrets
+- Store:
+    - Passwords, API keys, tokens, crednetials
+- Best for:
+    - Applications needing sensitive values with rotation
+
+AWS Systems Manager Parameter:
+====
+- Primary Purpose:
+    - Store configuration parameters
+- Stores:
+    - Strings configs, encrypted values
+- Best for:
+    - Application configuration and simple secrets
+
+AWS KMS
+====
+"Who holds the keys to encryption?"
+
+KMS manages encryption keys used by AWS services and applications. 
+
+Examples:
+    - Encrypting an S3 bucket
+    - Encrypting Elastic Block Storage Volumes (EBS) 
+    - Encrypting Relational Database Service (RDS) 
+    
+
 

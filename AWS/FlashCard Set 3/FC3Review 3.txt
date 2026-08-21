@@ -1,0 +1,23 @@
+CloudFront Function enables you to run lightweight JavaScript functions at the edge of the CloudFront network. CloudFront functions can only be triggered:
+    - at viewer requests and viewer response events. 
+
+CloudFront Viewer Response Event
+    - Occurs before CloudFront returns the requested content to the user. You can use this event to trigger actions, such as logging the response or modifying the response headders before delivering it to the user. 
+
+Use View Response Event When:
+    - modifying the response without caching the result
+
+If you're looking to run simple tasks like header manipulation, URL, redirects, or request authorization, you should consider using: 
+    - CloudFront Functions since it's much cheaper than Lambda@Edge
+
+Three Types of Glacier Archive Retrieval Options
+    - Standard 
+    - Expedited
+    - Bulk
+
+Archive Retrieval Options: 
+    - Standard Retrievals (Default): Allows you to access your glacier archives within 3-5 hours. 
+    - Expedited Retrievals: 1-5 Minutes, as long as the file size doesn't exceed 250MB (Highest Retrieval Fee)
+    - Bulk: 5-12 Hours
+
+Glacier Instant Retrieval: - Archiving solution that can deliver retrieval times in milliseconds

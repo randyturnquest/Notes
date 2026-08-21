@@ -1,0 +1,57 @@
+1. 
+
+    A company has a microservices application that must be integrated with API Gateway. The developer must configure custom data mapping between the API Gateway and microservices. 
+    In addition, the developer must specify how the incoming request data is mapped to the integration request and how the resulting integration response data is mapped to the method response. 
+
+    Answer. HTTP is the most suitable integration types. 
+
+        - You can integrate an API method in your API Gateway with a custom HTTP endpoint of your application in two ways. 
+        - HTTP Proxy Integration
+        - HTTP Custom Integration
+
+        - Proxy Integration, the setup is simple. You only need to set the HTTP method and the HTTP endpoint URI, according to the backend requirements, if you are not concerned withh content encoding or caching. 
+        - HTTP Proxy integration and HTTP integration, the value is HTTP_Proxy and HTTP, respectively. 
+        - Since the integration type that is being describe in the senario fit sthe definiton of an HTTP custom integration, the correct answer is to use the HTTP integration type. 
+
+        - HTTP Proxy is incorrect because this type is only used for HTTP proxy integration when you don't need to do data mapping for your request and response data. 
+
+    Summary: Proxy Integration, the setup is simple. You only need to set the HTTP method and the HTTP endpoint URI 
+    Since you need to specify how the incoming request data is mapped to thhe integration request and how the resulting integration response is mapped to the method response, you use HTTP. In addition to proxy integration setup steps, you need to specify how the incoming request data is mapped to the integration request and how the resulting integration response is mapped to the method response. 
+
+2. 
+    A Developer is building a web application which requires a multithhreaded event-based key/value cache store to implemennt a lazy loading cache strategy for data query result sets. It is required to run large nodes with multiple cores for a cache layer, and it should scale up or down as the demand ont he system increases and decreases. 
+
+    Answer: Amazon ElastiCache for Memcached
+
+    Redis and Memcached are popular, open-source, in-memory data stores. Although thhey are both easy to use and offer high performance, there are important differences to connsider when choosing an engine. 
+        - Memcached is designed for simplicity, while Redis offers a rich set of features that make it effect for a wide range of use cases. 
+        - Redis can provide more durable and powerful cache layer to the prototype distributed system; however, you should take note on one keyword in the requirement:
+            
+            Multithreaded. 
+
+            Redis is mostly a singly-threaded server. It is not designed to benefit from multiple CPU cores, unlike Memcached; however, you can launch several Redis instances to scale out on several cores if needed. 
+
+            Memcached is more suitable since the scenario specifies that the system will run large notdes with multiple cores or threads, which Memcached can adequately provide. 
+
+            Memcached over Redis
+                - You need the simplest model possible
+                - You need to run large nodes with multiple cores or threads
+                - You need the ability to scale out and in, adding and removing nodes as demand on yoru system increases and decreases. 
+                - You need to cache objects, such as a database. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

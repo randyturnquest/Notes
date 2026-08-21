@@ -1,0 +1,38 @@
+Amazon EventBridge (CloudWatch Events):
+- A service used for building event-driven applications in AWS. Eventbridge can capture events produced by your build environment. 
+
+AWS Systems Manager Parameter Store:
+- A service that you can use for storing data such as passwords, database credentials, environment variables, and any plaintext or encrypted data. 
+    - Provides secure, hierarchical storage for configuration data management and secrets management. 
+
+AWS CodeDeploy:
+- AWS-defined strategies that you can use for your deployments. You can also crate your own deployment configuration if you want. 
+
+AWS CodePipeline:
+- Similar to Code Deployment with the added step of manual approval. 
+
+AWS CodeWhisperer:
+- A machine learning-enhanced tool that boosts your coding efficiency by offering real-time code suggestions within IDEs, such as the AWS Lambda Console
+
+AWS CodeArtifact:
+- A fully managed artifact repository service that enables teams to securely store and share software packages used in application development. 
+
+Amazon CodeGuru:
+- A service that can analyze Python and Java code using automated reasoning and machine learning to provide fixes, recommendations for improving code quality, and vulnearbility detection. 
+
+AWS Key Management Service (KMS) - Key:
+- The most basic resource in AWS
+- Includes metadata such as the Key ID, creation date, and Key state. 
+- Also contains the key material used to encrypt and decrypt data. 
+
+AWS CodeBuild:
+- Allows you to compile build, run tests, and produce an artifact of your code. 
+- This can be integrated into your existing CI/CD process. 
+
+AWS Key Management Service (KMS):
+
+
+AWS Secrets Manager:
+
+
+AWS Systems Manager Parameter Store:

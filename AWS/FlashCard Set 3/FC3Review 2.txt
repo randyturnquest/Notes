@@ -1,0 +1,15 @@
+KMS Symmetric Key - a 256-bit key that is used for encryption and decryption
+
+KMS: Asymmetric Key:
+    - A RSA key pair that is used for encryption and decryption or signing and verification (but not both)
+    - Or can elliptic curve (ECC) key pair that is used for signing and verification. 
+
+KMS: AWS-Managed Keys:
+    - These are KMS Keys in your account that are created, managed, and used on your behald by an AWS service. 
+
+KMS: AWS-Managed Keys - You cannot manage, rotate and change the key policies AWS-Managed keys. You cannot use them in:
+    - cryptographic operations directly; the service that creates them uses them on your behalf. 
+
+KMS: AWS-Owned Keys:
+    - These are KMS Keys that an AWS service creates, owns, and manageds for use in multiple AWS accounts. You cannot view, use, track or audit these KMS keys. 
+

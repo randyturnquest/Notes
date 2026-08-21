@@ -1,0 +1,59 @@
+Parts of a CloudFormation Template:
+    - AWSTemplateFormatVersion
+    - Description
+    - Metadata
+    - Resources
+    - Mappings
+    - Parameters
+    - Conditions
+    - Transform
+
+DynamoDB - On-Demand Mode Tables:
+    - Write Request Unit
+
+DynamoDB - Provisioned Mode Tables:
+    - Write Capacity Unit
+
+On-Demand Mode Tables
+    - You don't need to specify how much write throughput you expect your application to perform. 
+    - DynamoDB changes you for the writes that your applicationn performs on your tables in terms of write request units. 
+
+Provisioned Mode:  
+    - You specify throughput capacity in terms of write capacity untis (WCUs)
+
+DynamoDB Streams:
+    - Allows you to capture item-level changes in a DynamoDB table in near-real-time. 
+    - When an item is modified using any of the write options (PutItem, UpdateItem, DeleteItem), DynamoDB detects it as an event and sends the modified record to a transaction log.
+
+CloudFormation - Parameters
+    - Allows users to pass values dynamically based onn their use case. 
+    - When writing CloudFormation templates it's unlikely to hardcode values such as AMI ID, Security Group ID, etc. 
+
+CloudFormation - Transform:
+    - A section to write templates in the AWS Serverless Application Model (AWS SAM) syntax
+    - The syntax used in SAM is different from the standard CloudFormation template, behind the scenes, CloudFormation converts and 'transforms' the templates written under the Transform section into a regular CloudFormation template. 
+
+Instrinsic Functions and Psuedo Parameters:
+    - Built-in functions and predefined pseudo parameters CloudFormation offers that you can use to create dynamic and flixible templates. 
+
+!Ref
+    - Returns theh value of a parameter or Resource
+    - When you specify a resource's logical name, it outpots a value taht you can use to refer to that rsource 
+        - InstanceId: !Ref MyEC2Instance
+
+!Ref Example:
+    - If you want to attach ann Elastic IP address (EIP) to an EC2 instance, you must specifiy the insntance using its instance id. The instance id won't be available until the EC2 instance is created, so hardcoding it in the CloudFormation template is not possibly. To get around this, we can use the Ref function to retrieve the instance id oncne it's available nad have CloudFormation insert it during stack creation. 
+
+CloudFormationTemplate - Resources
+    - Required - Where you define all resources that you want to include in your stack. 
+    - Rsources is the only required section of cloudformation template all other sections are optional 
+
+!FindInMap:
+    - Works only with the Mappings Section
+    - Returns a named value based on a specified key
+
+    - MyRegions is the map name. For the top-level key, the AWS::Region Pseudo parameter is used instead of a static value to grab the Region where the stack will be deployed. First, creeate a two-level map under the Mappings under the Mappings section. Each map is a key that points to a name-value pair. Make the regiosn your top-level keys, followed by a name-value pair that represents the AMI name and  and its corresponding image id. Retrieve the image ids with FindInMap using syntax:
+
+    !FindInMap [MapName, TopLevelKey, SecondLevelKey]
+    ImageID: !FindInMap [ MyRegions, !Ref "AWS::Region", CustomUbuntu ]
+

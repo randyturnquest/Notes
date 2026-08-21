@@ -1,0 +1,25 @@
+With ElasticBeanstalk you can run either a Web Server env or a Worker env. 
+
+DynamoDB provides two transaction operations:
+    - TransactWriteItems
+    - TransactGetItems
+
+Before you can access the custom resources in SAM, you must declaire the AWS::Serverless transform macro in the Transform section of a CloudFormation template.
+    - When yu deploy a SAM template, CloudFormation will look first for the Transform section, if there is one, all resources defined under that are expanded into their native CloudFormation resources. 
+
+=======
+Flash Cards Set 2 - Test One Results
+=======
+
+    95%
+    - Correct 61
+    - Incorrect: 3
+
+    1. A Managed Platform that allows you to upload your application code in AWS and provision the required cloud environment easily. 
+    - Elastic Beanstalk
+
+    2. SNS - Message Attributes
+    - Enables you to attach strucutre metadata to messages distributed through the service. Metadata can include various details such as timestamps, geographic data, signatures, and identifiers, providing the context and additional information about each message.  
+
+    3. Perform an in-place update when you deploy a newer version of your application without application downtime. 
+    - Blue/Green Deployment
