@@ -57,3 +57,13 @@ CloudFormationTemplate - Resources
     !FindInMap [MapName, TopLevelKey, SecondLevelKey]
     ImageID: !FindInMap [ MyRegions, !Ref "AWS::Region", CustomUbuntu ]
 
+Before you can access the custom resources in SAM, you must declare the AWS::Serverless Transform Macro in the Transform section of a CloudFormation template. 
+
+SAM Template gives you access to custom resource types, which are basically wrappers for the existing ones available in CloudFormation. 
+
+AWS Step Functions
+    - Lets you orchestrate the components of an application into a serverless workflow
+
+Output Filters - Result Path:
+    - Used to include the original input into the state's Output
+    - Only Task, Map, Parallel, and Pass states are supported. 
